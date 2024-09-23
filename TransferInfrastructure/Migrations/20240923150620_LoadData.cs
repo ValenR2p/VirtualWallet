@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -25,7 +24,7 @@ namespace TransferInfrastructure.Migrations
                 {
                     table.PrimaryKey("PK_AccountType", x => x.Id);
                 });
-            
+
             migrationBuilder.CreateTable(
                 name: "StateAccount",
                 columns: table => new
@@ -38,7 +37,7 @@ namespace TransferInfrastructure.Migrations
                 {
                     table.PrimaryKey("PK_StateAccount", x => x.Id);
                 });
-            
+
             migrationBuilder.CreateTable(
                 name: "TransferType",
                 columns: table => new
@@ -51,7 +50,7 @@ namespace TransferInfrastructure.Migrations
                 {
                     table.PrimaryKey("PK_TransferType", x => x.Id);
                 });
-            
+
             migrationBuilder.CreateTable(
                 name: "TypeCurrency",
                 columns: table => new
@@ -64,7 +63,7 @@ namespace TransferInfrastructure.Migrations
                 {
                     table.PrimaryKey("PK_TypeCurrency", x => x.Id);
                 });
-            
+
             migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
@@ -183,7 +182,7 @@ namespace TransferInfrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-            
+
             migrationBuilder.CreateTable(
                 name: "Transfer",
                 columns: table => new
@@ -212,7 +211,7 @@ namespace TransferInfrastructure.Migrations
                         principalTable: "Account",
                         principalColumn: "AccountId",
                         onDelete: ReferentialAction.Restrict);
-                    
+
                     table.ForeignKey(
                         name: "FK_Transfer_TransferType_TypeId",
                         column: x => x.TypeId,
@@ -290,7 +289,7 @@ namespace TransferInfrastructure.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Transfer_SrcAccountId",
                 table: "Transfer",
-                column: "SrcAccountId");            
+                column: "SrcAccountId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transfer_TypeId",
@@ -303,13 +302,13 @@ namespace TransferInfrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "PersonalAccount");
-            
+
             migrationBuilder.DropTable(
                 name: "Transfer");
 
             migrationBuilder.DropTable(
                 name: "Account");
-            
+
             migrationBuilder.DropTable(
                 name: "TransferType");
 
@@ -323,7 +322,7 @@ namespace TransferInfrastructure.Migrations
                 name: "TypeCurrency");
 
             migrationBuilder.DropTable(
-                name: "User");            
+                name: "User");
         }
     }
 }

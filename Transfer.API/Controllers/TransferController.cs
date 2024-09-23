@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
+﻿using Microsoft.AspNetCore.Mvc;
 using TransferApplication.Exceptions;
 using TransferApplication.Interfaces;
 using TransferApplication.Request;
@@ -15,15 +13,15 @@ namespace Transfer.API.Controllers
 
         public TransferController(ITransferServices service)
         {
-            _service = service; 
+            _service = service;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll() 
+        public async Task<IActionResult> GetAll()
         {
             var result = _service.GetAll();
 
-            return Ok(result);            
+            return Ok(result);
 
         }
 
@@ -87,7 +85,7 @@ namespace Transfer.API.Controllers
 
                 return new JsonResult(transfer) { StatusCode = 201 };
             }
-            catch(BadRequestException ex)
+            catch (BadRequestException ex)
             {
                 return BadRequest(new { message = ex.Message });
             }

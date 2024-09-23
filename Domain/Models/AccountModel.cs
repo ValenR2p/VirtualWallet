@@ -1,7 +1,4 @@
-﻿using Domain.Models;
-using System.Security.Principal;
-
-namespace Domain.Models
+﻿namespace Domain.Models
 {
     public class AccountModel
     {

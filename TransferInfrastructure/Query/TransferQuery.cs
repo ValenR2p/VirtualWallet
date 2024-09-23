@@ -1,12 +1,6 @@
 ﻿using Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TransferApplication.Interfaces;
-using TransferApplication.Response;
 using TransferInfrastructure.Persistence;
 
 namespace TransferInfrastructure.Query
@@ -32,7 +26,8 @@ namespace TransferInfrastructure.Query
                 .FirstOrDefault(t => t.SrcAccountId == UserId);
 
             //Se busca si hay alguna transferencia pendiente y se compara si se encontro algo
-            if (transfer != null) {
+            if (transfer != null)
+            {
                 status = true;
             }
             return status;
