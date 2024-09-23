@@ -1,15 +1,7 @@
-﻿using Azure.Core;
-using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Models;
 using TransferApplication.Interfaces;
-using TransferApplication.Mappers.IMappers;
 using TransferApplication.Request;
 using TransferApplication.Response;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TransferApplication.UseCases
 {
@@ -24,15 +16,17 @@ namespace TransferApplication.UseCases
 
         //NECESITO EL ACCOUNTSERVICES PROBABLEMENTE
         //public TransferServices(ITransferCommand command, ITransferQuery query, ITransferMapper mapper) { 
-        public TransferServices(ITransferCommand command, ITransferQuery query) { 
+        public TransferServices(ITransferCommand command, ITransferQuery query)
+        {
             _command = command;
-            _query = query;            
+            _query = query;
         }
         public async Task<TransferResponse> CreateTransfer(CreateTransferRequest request)
         {
             //Hace falta una verificacion de si existe el destino de la transferencia
             //tengo que tener un metodo que me permita obtener una cuanta por su Id
-            var srcAccount = new AccountModel {
+            var srcAccount = new AccountModel
+            {
                 AccountId = new Guid(),
                 Alias = "AliasSrc",
                 CBU = "CBUSrc",
@@ -64,7 +58,8 @@ namespace TransferApplication.UseCases
             //await MakeTransfer(transfer, srcAccount, destAccount);
             await _command.InsertTransfer(transfer);
 
-            if (await MakeTransfer(transfer, srcAccount, destAccount) == false) {
+            if (await MakeTransfer(transfer, srcAccount, destAccount) == false)
+            {
                 transfer.Status = "Canceled";
                 //_command.UpdateTransfer(transfer):
             }
@@ -89,9 +84,10 @@ namespace TransferApplication.UseCases
         }
         public async Task<bool> MakeTransfer(Transfer transfer, AccountModel srcAccount, AccountModel destAccount)
         {
-            if (await _query.GetPendingTransfer(transfer.SrcAccountId) == false) {
+            if (await _query.GetPendingTransfer(transfer.SrcAccountId) == false)
+            {
                 //Verificar si se tiene saldo suficiente y otras cuestiones mas
-                
+
                 //If (verificar que se haga bien la transferencia, si esta bloqueada la cuenta o si se cancela por X motivo la transferencia)
 
                 //var estadoDest = await _accountServices.GetEstado(destAccount.StateId);
@@ -113,7 +109,8 @@ namespace TransferApplication.UseCases
 
             // Buscar primero si existe la transferencia y despues si pisar los datos.
 
-            var transfer = new Transfer {
+            var transfer = new Transfer
+            {
                 Amount = request.Amount,
                 Date = request.Date,
                 Status = "",
@@ -185,6 +182,6 @@ namespace TransferApplication.UseCases
             //throw new NotImplementedException();
         }
 
-        
+
     }
 }

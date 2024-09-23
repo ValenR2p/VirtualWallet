@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using System;
 using TransferApplication.Interfaces;
 using TransferApplication.UseCases;
 using TransferInfrastructure.Command;

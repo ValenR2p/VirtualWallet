@@ -1,9 +1,4 @@
 ﻿using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserApplication.Interfaces
 {
@@ -11,5 +6,6 @@ namespace UserApplication.Interfaces
     {
         Task<User> CreateUser(User user);
         Task<User> DeleteUser(int UserId);
+        Task<User> UpdateUser(User user);
     }
 }

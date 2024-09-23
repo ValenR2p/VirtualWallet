@@ -1,9 +1,4 @@
 ﻿using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UserApplication.Mappers.IMappers;
 using UserApplication.Response;
 
@@ -22,7 +17,7 @@ namespace UserApplication.Mappers
                 Deleted = user.Deleted,
                 DNI = user.DNI,
                 Email = user.Email,
-                //Id = user.Id,
+                Id = user.Id,
                 LastLogin = user.LastLogin,
                 LastName = user.LastName,
                 Name = user.Name,

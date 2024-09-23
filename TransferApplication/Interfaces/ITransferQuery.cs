@@ -1,5 +1,4 @@
 ﻿using Domain.Models;
-using TransferApplication.Response;
 
 namespace TransferApplication.Interfaces
 {
