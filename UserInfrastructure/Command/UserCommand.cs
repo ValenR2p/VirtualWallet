@@ -25,10 +25,12 @@ namespace UserInfrastructure.Command
 
         public async Task<User> DeleteUser(int UserId)
         {
-            var userToDelete = await _context.Users.FirstOrDefaultAsync(u => u.Id == UserId);
-            userToDelete.Deleted = true;
-            await _context.SaveChangesAsync();
-            return userToDelete;
+            throw new NotImplementedException();
+
+            //var userToDelete = await _context.Users.FirstOrDefaultAsync(u => u.Id == UserId);
+            //userToDelete.Deleted = true;
+            //await _context.SaveChangesAsync();
+            //return userToDelete;
         }
     }
 }

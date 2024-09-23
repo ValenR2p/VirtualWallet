@@ -18,6 +18,12 @@ namespace TransferInfrastructure.Query
         {
             _context = context;
         }
+
+        public List<Transfer> GetAllTransfers()
+        {
+            return _context.Transfers.ToList();
+        }
+
         public async Task<bool> GetPendingTransfer(Guid UserId)
         {
             var status = false;

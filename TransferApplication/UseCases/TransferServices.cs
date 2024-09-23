@@ -17,15 +17,16 @@ namespace TransferApplication.UseCases
     {
         private readonly ITransferCommand _command;
         private readonly ITransferQuery _query;
-        private readonly ITransferMapper _mapper;
+        //private readonly ITransferMapper _mapper;
+
         //Necesitaria acceder a la Cuenta que realiza la transferencia y verificar en la lista de transferencias,
         //si hay alguna a su nombre que este pendiente
 
         //NECESITO EL ACCOUNTSERVICES PROBABLEMENTE
-        public TransferServices(ITransferCommand command, ITransferQuery query, ITransferMapper mapper) { 
+        //public TransferServices(ITransferCommand command, ITransferQuery query, ITransferMapper mapper) { 
+        public TransferServices(ITransferCommand command, ITransferQuery query) { 
             _command = command;
-            _query = query;
-            _mapper = mapper;
+            _query = query;            
         }
         public async Task<TransferResponse> CreateTransfer(CreateTransferRequest request)
         {
@@ -109,6 +110,9 @@ namespace TransferApplication.UseCases
         }
         public Task<TransferResponse> UpdateTransfer(CreateTransferRequest request)
         {
+
+            // Buscar primero si existe la transferencia y despues si pisar los datos.
+
             var transfer = new Transfer {
                 Amount = request.Amount,
                 Date = request.Date,
@@ -127,9 +131,30 @@ namespace TransferApplication.UseCases
             throw new NotImplementedException();
         }
 
-        public Task<List<TransferResponse>> GetAll()
+        public async Task<List<TransferResponse>> GetAll()
         {
-            throw new NotImplementedException();
+            var tranfersList = _query.GetAllTransfers();
+
+            List<TransferResponse> transfersListResponse = new List<TransferResponse>();
+
+            foreach (var transfer in tranfersList)
+            {
+                var transferData = new TransferResponse
+                {
+                    Id = transfer.Id,
+                    Amount = transfer.Amount,
+                    Date = transfer.Date,
+                    Status = transfer.Status,
+                    Description = transfer.Description,
+                    TypeId = transfer.TypeId,
+                    SrcAccount = transfer.SrcAccount,
+                    DestAccount = transfer.DestAccount,
+                };
+
+                transfersListResponse.Add(transferData);
+            }
+
+            return transfersListResponse;
         }
 
         public Task<List<TransferResponse>> GetAllByUser(Guid id)

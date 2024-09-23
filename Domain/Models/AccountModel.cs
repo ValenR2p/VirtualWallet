@@ -14,7 +14,7 @@ namespace Domain.Models
         public int AccTypeId { get; set; }
         public AccountType AccountType { get; set; }
 
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
         public int CurrencyId { get; set; }

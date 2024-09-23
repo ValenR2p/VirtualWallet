@@ -22,7 +22,7 @@ namespace UserApplication.Mappers
                 Deleted = user.Deleted,
                 DNI = user.DNI,
                 Email = user.Email,
-                Id = user.Id,
+                //Id = user.Id,
                 LastLogin = user.LastLogin,
                 LastName = user.LastName,
                 Name = user.Name,
