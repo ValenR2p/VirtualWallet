@@ -27,7 +27,7 @@ namespace Transfer.API.Controllers
 
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Account/{id}")]
         public async Task<IActionResult> GetAllByUser(Guid id)
         {
             try

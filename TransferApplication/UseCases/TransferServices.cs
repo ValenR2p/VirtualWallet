@@ -157,9 +157,32 @@ namespace TransferApplication.UseCases
             return transfersListResponse;
         }
 
-        public Task<List<TransferResponse>> GetAllByUser(Guid id)
+        public async Task<List<TransferResponse>> GetAllByUser(Guid id)
         {
-            throw new NotImplementedException();
+            var tranfersList = await _query.GetUserTransfers(id);
+
+            List<TransferResponse> transfersListResponse = new List<TransferResponse>();
+
+            foreach (var transfer in  tranfersList)
+            {
+                var transferData = new TransferResponse
+                {
+                    Id = transfer.Id,
+                    Amount = transfer.Amount,
+                    Date = transfer.Date,
+                    Status = transfer.Status,
+                    Description = transfer.Description,
+                    TypeId = transfer.TypeId,
+                    SrcAccount = transfer.SrcAccount,
+                    DestAccount = transfer.DestAccount,
+                };
+
+                transfersListResponse.Add(transferData);
+            }
+
+            return transfersListResponse;
+
+            //throw new NotImplementedException();
         }
 
         

@@ -5,13 +5,13 @@ using TransferInfrastructure.DataSet;
 namespace TransferInfrastructure.Persistence
 {
     public class TransferContext : DbContext
-    {
+    {      
         public DbSet<Transfer> Transfers { get; set; }
         public DbSet<TransferType> TransferTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"server=.;database=;user id=sa;password=;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"server=.;database=TPVirtualWallet;user id=sa;password=Internacional17;TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
